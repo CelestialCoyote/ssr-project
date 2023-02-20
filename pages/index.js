@@ -1,13 +1,13 @@
 import React from 'react';
+import { initStore, initialCards, addItem } from '../store';
 import Card from './Card';
-import data from './API/data';
 import styles from './index.module.css';
 
 
-export default class Index extends React.Component {
-	static async getInitialProps() {
-		return { cards: data }
-	}
+class Index extends React.Component {
+	static async getInitialProps({ store }) {
+		return store.dispatch(initialCards());
+	};
 
 	render() {
 		return (
@@ -31,3 +31,5 @@ export default class Index extends React.Component {
 	};
 };
 
+
+export default initStore.withRedux(Index);
